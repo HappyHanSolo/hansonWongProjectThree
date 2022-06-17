@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 import './App.css';
 import DisplayRestaurants from './DisplayRestaurants';
 import Form from './Form';
@@ -5,7 +7,24 @@ import Header from './Header';
 
 
 function App() {
-  
+
+  axios ({
+    baseURL:'https://shrouded-bayou-34065.herokuapp.com/https://api.yelp.com/v3/businesses/search',
+    method: 'GET',
+    headers: {
+      Authorization: 'Bearer lci33QO2O_jTge0rkYRhSJ09IaBJVIA5cY02UudrbmmFEvwSNfD6uhoItZ7Q5DhqIyyfqTQLraiWQEupJzxezTTMKejDuwq62PjgPXulG1aS7Pj1GMunyywx6_ipYnYx'
+    },
+    params: {
+      location: 'M2K2V7',
+      categories: 'bubbletea',
+    }
+  }).then((res) => {
+    console.log(res.data);
+  })
+
+
+
+
   
   return (
     <div>
