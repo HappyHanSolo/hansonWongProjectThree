@@ -1,6 +1,17 @@
-function DisplayRestaurants () {
+const DisplayRestaurants = (props) => {
     return(
-        <><h1>Restuarants</h1></>
+        <div>
+            <section className="bobbaRestuarantResults">
+                <section className="gallery">
+                    <div className="photoContainer">
+                        <img src={props.restuarantPic} alt={`Image of ${props.restuarantName}`}/>
+                        <h2>{props.restuarantName}</h2>
+                        <h3>{props.restuarantLocation}</h3>
+                        <p>{props.price}</p>
+                    </div>
+                </section>
+            </section>
+        </div>
     )
 }
 

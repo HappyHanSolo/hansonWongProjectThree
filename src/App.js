@@ -7,21 +7,26 @@ import Header from './Header';
 
 
 function App() {
+  const [bobbaData, setBobbaData] = useState([])
+  const [userLocation, setBobbaLocation] = useState(null)
 
-  axios ({
-    baseURL:'https://shrouded-bayou-34065.herokuapp.com/https://api.yelp.com/v3/businesses/search',
-    method: 'GET',
-    headers: {
-      Authorization: 'Bearer lci33QO2O_jTge0rkYRhSJ09IaBJVIA5cY02UudrbmmFEvwSNfD6uhoItZ7Q5DhqIyyfqTQLraiWQEupJzxezTTMKejDuwq62PjgPXulG1aS7Pj1GMunyywx6_ipYnYx'
-    },
-    params: {
-      location: 'M2K2V7',
-      categories: 'bubbletea',
-    }
-  }).then((res) => {
-    console.log(res.data);
-  })
-
+   useEffect(() => {
+    //if (userLocation) {
+      axios ({
+        baseURL:'https://shrouded-bayou-34065.herokuapp.com/https://api.yelp.com/v3/businesses/search',
+        method: 'GET',
+        headers: {
+          Authorization: 'Bearer lci33QO2O_jTge0rkYRhSJ09IaBJVIA5cY02UudrbmmFEvwSNfD6uhoItZ7Q5DhqIyyfqTQLraiWQEupJzxezTTMKejDuwq62PjgPXulG1aS7Pj1GMunyywx6_ipYnYx'
+        },
+        params: {
+          location: 'm2k2v7',
+          categories: 'bubbletea',
+        }
+      }).then((apiData) => {
+        setBobbaData(apiData.data.businesses)
+      });
+    //}   
+    }, [])
 
 
 
@@ -30,8 +35,20 @@ function App() {
     <div>
 
       < Header />
-      < Form />
-      < DisplayRestaurants />
+      < Form handleSubmit={setBobbaLocation}/>
+      <h2>Buddies</h2>
+      { bobbaData.map((bobbaRestuarant) => {
+          return ((
+            < DisplayRestaurants 
+                key={bobbaRestuarant.id}
+                restuarantPic={bobbaRestuarant.image_url}
+                restuarantName={bobbaRestuarant.name}
+                restuarantLocation={bobbaRestuarant.location.address1}
+                price={bobbaRestuarant.price}
+                />
+          ))
+        })
+      }
     </div>
     
   );
