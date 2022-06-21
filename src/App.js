@@ -2,16 +2,22 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import './App.css';
 import DisplayRestaurants from './DisplayRestaurants';
-import Form from './Form';
 import Header from './Header';
 
 
 function App() {
   const [bobbaData, setBobbaData] = useState([])
-  const [userLocation, setBobbaLocation] = useState(null)
+  const [userLocation, setUserLocation] = useState('')
+  const [userInput, setUserInput] = useState('')
+  const handleSubmit = (event) => {
+      event.preventDefault();
+      setUserLocation(userInput);
+      setUserInput('')
+    }
+  
 
    useEffect(() => {
-    //if (userLocation) {
+    if (userLocation) {
       axios ({
         baseURL:'https://shrouded-bayou-34065.herokuapp.com/https://api.yelp.com/v3/businesses/search',
         method: 'GET',
@@ -19,14 +25,14 @@ function App() {
           Authorization: 'Bearer lci33QO2O_jTge0rkYRhSJ09IaBJVIA5cY02UudrbmmFEvwSNfD6uhoItZ7Q5DhqIyyfqTQLraiWQEupJzxezTTMKejDuwq62PjgPXulG1aS7Pj1GMunyywx6_ipYnYx'
         },
         params: {
-          location: 'm2k2v7',
+          location: {userLocation},
           categories: 'bubbletea',
         }
       }).then((apiData) => {
         setBobbaData(apiData.data.businesses)
       });
-    //}   
-    }, [])
+    }   
+    }, [userLocation])
 
 
 
@@ -35,7 +41,22 @@ function App() {
     <div>
 
       < Header />
-      < Form handleSubmit={setBobbaLocation}/>
+      <section className="bobbaForm">
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="findLocation">Find me a Buddy!</label>
+                <input 
+                    type="text" 
+                    name="location" 
+                    value={userInput}
+                    placeholder="Input Location" 
+                    onChange={(e)=> {
+                        setUserInput(e.target.value);
+                        }}/>
+            <button onSubmit={handleSubmit}>
+                Bobba Time!
+            </button>
+            </form>
+        </section>
       <h2>Buddies</h2>
       { bobbaData.map((bobbaRestuarant) => {
           return ((
