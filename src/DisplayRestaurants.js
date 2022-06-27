@@ -1,17 +1,15 @@
 const DisplayRestaurants = (props) => {
     return(
-        <div>
             <section className="bobbaRestuarantResults">
-                <section className="gallery">
-                    <div className="photoContainer">
-                        <img src={props.restuarantPic} alt={`Showcasing ${props.restuarantName} location and product`}/>
-                        <h2>{props.restuarantName}</h2>
-                        <h3>{props.restuarantLocation}</h3>
-                        <p>{props.price}</p>
-                    </div>
-                </section>
+                    <ul>
+                        <li className="bobbaRestaurant">
+                            <h3>{props.restuarantName}</h3>
+                            <img src={props.restuarantPic} alt={`Showcasing ${props.restuarantName} location and product`}/>
+                            <h4>{props.restuarantLocation}</h4>
+                            <p>{props.price}</p>
+                        </li>
+                    </ul>
             </section>
-        </div>
     )
 }
 

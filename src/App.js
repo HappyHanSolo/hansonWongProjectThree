@@ -1,8 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './App.css';
+import './App.scss';
 import DisplayRestaurants from './DisplayRestaurants';
 import Header from './Header';
+import Footer from './Footer';
 
 
 function App() {
@@ -38,9 +39,10 @@ function App() {
 
   
   return (
-    <div>
+    <div className='appWrapper'>
 
       < Header />
+      <main className='body'>
       <section className="bobbaForm">
             <form onSubmit={handleSubmit}>
                 <label htmlFor="findLocation">Find me a Buddy!</label>
@@ -48,7 +50,7 @@ function App() {
                     type="text" 
                     name="location" 
                     value={userInput}
-                    placeholder="Input Location" 
+                    placeholder="Input City" 
                     onChange={(e)=> {
                         setUserInput(e.target.value);
                         }}/>
@@ -58,18 +60,22 @@ function App() {
             </form>
         </section>
       <h2>Buddies</h2>
-      { bobbaData.map((bobbaRestuarant) => {
-          return ((
-            < DisplayRestaurants 
-                key={bobbaRestuarant.id}
-                restuarantPic={bobbaRestuarant.image_url}
-                restuarantName={bobbaRestuarant.name}
-                restuarantLocation={bobbaRestuarant.location.address1}
-                price={bobbaRestuarant.price}
-                />
-          ))
-        })
-      }
+      <div className='bobbaResultsContainer'>
+        { bobbaData.map((bobbaRestuarant) => {
+            return ((
+              < DisplayRestaurants 
+                  key={bobbaRestuarant.id}
+                  restuarantPic={bobbaRestuarant.image_url}
+                  restuarantName={bobbaRestuarant.name}
+                  restuarantLocation={bobbaRestuarant.location.address1}
+                  price={bobbaRestuarant.price}
+                  />
+            ))
+          })
+        }
+      </div>
+      </main>
+      <Footer/>
     </div>
     
   );
