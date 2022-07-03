@@ -27,15 +27,25 @@ header{
   font-size: 2rem;
 }
 
-h2{
+.resultsTitleText{
   display: flex;
+  flex-direction: column;
   width: 65vw;
-  justify-content: center;
-  margin: 0 auto;
   border-bottom: 5px solid #000;
-  padding: 5px;
-  font-family: 'Fascinate', cursive;
-  font-size: 1.5rem;
+    h2{
+      font-family: 'Fascinate', cursive;
+      font-size: 1.5rem;
+      text-align: center;
+      width: 65vw;
+      margin: 5px auto;
+    }
+    p{
+      font-family: 'Fredoka One', cursive;
+      font-size: 1rem;
+      text-align: center;
+      width: 65vw;
+      margin: 5px auto;
+    }
 }
 
 main {
@@ -57,14 +67,14 @@ form {
 input{
   margin: 5px 0;
   padding: 10px;
-  max-width: 30vw;
+  max-width: 40vw;
   border-radius: 100px;
   font-family: 'Fredoka One', cursive;
 }
 button{
   margin: 5px 0;
   padding: 10px;
-  max-width: 30vw;
+  max-width: 40vw;
   border-radius: 100px;
   font-family: 'Fredoka One', cursive;
   background-color: #583b39;
@@ -126,4 +136,28 @@ footer {
   width: 100vw;
   padding: 5px;
   font-family: 'Fredoka One', cursive;
+}
+
+@media (max-width: 940px) {
+  header{
+    font-size: 1.75rem;
+  }
+  input{
+    max-width: 75vw;
+  }
+  button{
+    max-width: 75vw;
+  }
+}
+
+@media (max-width: 835px) {
+  header{
+    font-size: 1.5rem;
+  }
+  input{
+    max-width: 100vw;
+  }
+  button{
+    max-width: 100vw;
+  }
 }

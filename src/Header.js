@@ -3,6 +3,7 @@ const Header = () => {
         <header>
             <h1>Boba Buddy 🧋</h1>
         </header>
+        
     )
 }
 

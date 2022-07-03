@@ -59,7 +59,10 @@ function App() {
             </button>
             </form>
         </section>
-      <h2>Buddies</h2>
+        <section className='resultsTitleText'>
+          <h2>Buddies</h2>
+          <p>A Boba a day keeps reality away ❣️</p>
+        </section>
       <div className='bobbaResultsContainer'>
         { bobbaData.map((bobbaRestuarant) => {
             return ((
